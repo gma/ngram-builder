@@ -5,7 +5,7 @@ You'll find this library handy if you're interested in extracting
 
 ## Installation
 
-    $ sudo python setup.py install
+    $ python setup.py install
 
 ## Usage
 
