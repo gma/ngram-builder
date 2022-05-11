@@ -18,7 +18,7 @@ class CounterTest(unittest.TestCase):
             "apple core removal tool": 1,
         })
         counter.remove_subphrases()
-        self.assertEqual(len(counter.keys()), 4)
+        self.assertEqual(len(list(counter.keys())), 4)
 
     def test_when_can_remove_all_subphrases_then_all_removed(self):
         counter = ngb.Counter({
@@ -44,7 +44,7 @@ class CounterTest(unittest.TestCase):
     def test_when_subphrase_appears_within_ngram_then_can_be_removed(self):
         counter = ngb.Counter({ "core": 1, "apple core removal": 1 })
         counter.remove_subphrases()
-        self.failIf("core" in counter)
+        self.assertFalse("core" in counter)
 
 
 class NgramBuilderTest(unittest.TestCase):

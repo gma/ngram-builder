@@ -9,18 +9,18 @@ __version__ = "0.1.0"
 class Counter(dict):
     
     def add(self, other):
-        for ngram in other.iterkeys():
+        for ngram in other.keys():
             self[ngram] = self.get(ngram, 0) + other[ngram]
 
     def remove_subphrases(self):
         builder = NgramBuilder()
         to_remove = {}
-        for phrase in self.keys():
+        for phrase in list(self.keys()):
             for length in range(1, len(phrase.split(" "))):
-                for subphrase in builder.find_ngrams(phrase, length).keys():
+                for subphrase in list(builder.find_ngrams(phrase, length).keys()):
                     if subphrase in self and self[subphrase] == self[phrase]:
                         to_remove[subphrase] = 1
-        for subphrase in to_remove.keys():
+        for subphrase in list(to_remove.keys()):
             del self[subphrase]
 
 
@@ -32,7 +32,7 @@ class NgramBuilder(object):
     def find_ngrams(self, text, length):
         counter = Counter()
         num_unigrams, unigrams = self.split_into_unigrams(text.lower())
-        for i in xrange(num_unigrams):
+        for i in range(num_unigrams):
             if (num_unigrams <= i + length - 1):
                 break
             unigram_group = unigrams[i:i + length]
