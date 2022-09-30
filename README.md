@@ -5,7 +5,8 @@ You'll find this library handy if you're interested in extracting
 
 ## Installation
 
-    $ python setup.py install
+    $ pip install -r requirements.txt
+    $ python setup.py install  # optional; installs it into your PYTHONPATH
 
 ## Usage
 
